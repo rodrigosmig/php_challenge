@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+    app:
+        build: .
+        container_name: app_challenge
+        restart: unless-stopped
+        tty: true
+        environment:
+            SERVICE_NAME: app_challenge
+            SERVICE_TAGS: dev
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+            - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+        networks:
+          - app-network
+    
+    webserver:
+        image: nginx:alpine
+        container_name: webserver_challenge
+        restart: unless-stopped
+        tty: true
+        ports:
+            - 8001:80
+        volumes:
+            - ./:/var/www
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+        networks: 
+            - app-network
+        
+    db:
+        image: mysql:5.7.22
+        container_name: db_challenge
+        restart: unless-stopped
+        tty: true
+        ports:
+            - 33080:3306
+        environment:
+            MYSQL_DATABASE: challenge
+            MYSQL_USER: challenge
+            MYSQL_PASSWORD: challenge
+            MYSQL_ROOT_PASSWORD: rootsql
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes: 
+            - dbdata:/var/lib/mysql
+            - ./mysql/my.cnf:/etc/mysql/my.cnf
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
+
+volumes: 
+    dbdata:
+        driver: local
