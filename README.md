@@ -7,7 +7,8 @@
 - add execution permission to the install.sh file
     * $ chmod +x install.sh
 - run the install.sh file for project configuration
-    * $ ./install.sh 
+    * $ ./install.sh
+- http://localhost:8001/
 
 
 ## Api
