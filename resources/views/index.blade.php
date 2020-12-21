@@ -55,37 +55,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="card">
-            <div class="card-header">
-                Person
-            </div>
-            <form id="person_form" action="/upload-shiporder" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="card-body">
-                    <div class="jumbotron jumbotron-fluid">
-                        <div class="container">
-                            <h1 class="display-4">PHP Challenge</h1>
-        
-                            <div class="form-group">
-                                <label for="file">Upload .xml files</label>
-                                <input type="file" class="form-control-file" id="file" name="file">
-                            </div>
-                            <button id="btn_person" type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <fieldset>
-                            <legend>Log:</legend>
-                            <ul id="log-list">
-                                
-                            </ul>
-                        </fieldset>
-                    </div>
-                </div>
-            </form>
-        </div>
     
     <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
